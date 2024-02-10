@@ -551,7 +551,10 @@ if [ -f version ]; then
   ui_printfile version;
   ui_print " ";
 fi;
-ui_print " " "AnyKernel3 by osm0sis @ xda-developers" " ";
+ui_print " " "---AnyKernel3 by osm0sis @ xda-developers---" " ";
+ui_print " " "-------------本内核由酷安@彳蘭编译--------------" " ";
+ui_print " " "--如不开机，请在twrp内或fastboot下关闭avb2.0校验--" " ";
+ui_print " " "--如需救砖，只需刷入当前设备原版的boot.img即可开机--" " ";
 grep -oE 'AK_BASE.*' META-INF/com/google/android/updater-script >&2;
 ui_print " ";
 
@@ -562,7 +565,7 @@ do_versioncheck;
 do_levelcheck;
 do_vendorlevelcheck;
 
-ui_print "Installing...";
+ui_print "正在刷入...";
 # hack to maintain support for anykernel.sh files that weren't updated correctly along with the AK core
 CORE=$(grep -oE 'ak.*core.sh' anykernel.sh);
 [ -f tools/$CORE ] || ln -s $AKHOME/tools/ak*-core.sh $AKHOME/tools/$CORE;
@@ -581,6 +584,6 @@ if [ "$(file_getprop anykernel.sh do.cleanup)" == 1 ]; then
   cleanup;
 fi;
 
-ui_print " " "Done!";
+ui_print " " "刷入完成！记得安装Kernel SU的管理器！";
 export PATH="$OLD_PATH";
 unset OLD_PATH OUTFD ZIPFILE;
