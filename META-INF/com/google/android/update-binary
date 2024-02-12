@@ -237,7 +237,7 @@ do_devicecheck() {
     done;
   done;
   if [ ! "$match" ]; then
-    abort " " "此内核不支持你的设备，刷入终止！";
+    abort " " "本内核不支持你的设备，刷入终止！";
   fi;
 }
 int2ver() {
@@ -252,7 +252,7 @@ int2ver() {
 do_versioncheck() {
   test "$(file_getprop anykernel.sh supported.versions)" || return 1;
   local android_ver hi_ver lo_ver parsed_ver supported supported_ver;
-  ui_print "正在检测系统版本";
+  ui_print "正在检测安卓版本";
   supported_ver=$(file_getprop anykernel.sh supported.versions | $BB tr -d '[:space:]');
   android_ver=$(file_getprop /system/build.prop ro.build.version.release);
   parsed_ver=$(int2ver $android_ver);
@@ -423,11 +423,19 @@ if [ -f version ]; then
   ui_printfile version;
   ui_print " ";
 fi;
-ui_print " " "--------AnyKernel3 by osm0sis @ xda-developers--------" " ";
-ui_print " " "-----------本内核由酷安@彳蘭提供编译教程及仓库-----------" " ";
-ui_print " " "---适用于天玑1200处理器，系统版本为安卓13的Neo三台机型---" " ";
-ui_print " " "----如不开机，请在twrp或fastboot关闭设备的avb2.0校验----" " ";
-ui_print " " "-如需救砖或移除KSU，请在twrp或fastboot刷入原版的boot.img-" " ";
+ui_print "|----------------------------------------------|";
+ui_print "|--mmmm  mmmmm  mmmmm    mmm  mmmmm  mm   m----|";
+ui_print "|-m#  #m #   ##   #    m#   #   #    #m   #----|";
+ui_print "|-#    # #mmmm#   #    #   mm   #    # #m #----|";
+ui_print "|-#    # #   #m   #    #    #   #    #  # #----|";
+ui_print "|--#mm#  #    # mm#mm   #mmm# mm#mm  #   ##----|":
+ui_print "|--------Kernel Source By @ nishant6342--------|";
+ui_print "|----------------------------------------------|";
+ui_print "|   AnyKernel3 by osm0sis @ xda-developers     |";
+ui_print "|------本内核由 酷安@彳蘭 提供编译教程及仓库------|";
+ui_print "|--适用于天玑1200,系统版本为安卓13的Neo三台机型---|";
+ui_print "|-如不开机,请在twrp或fastboot关闭设备的avb2.0校验-|";
+ui_print "|----------------------------------------------|";
 setup_env;
 
 do_devicecheck;
@@ -451,4 +459,4 @@ if [ "$(file_getprop anykernel.sh do.cleanup)" == 1 ]; then
   cleanup;
 fi;
 
-ui_print " " " " "刷入完成，请重启手机，并更新KernelSU管理器!";
+ui_print " " " " "刷入完成，请重启手机，并更新Kernel SU管理器!";

@@ -15,7 +15,7 @@ device.name2=RMX3357
 device.name3=RMX3350
 device.name4=
 device.name5=
-supported.versions=13
+supported.versions=
 supported.patchlevels=
 '; } # end properties
 
